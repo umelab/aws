@@ -27,7 +27,7 @@ STRING_EC2_VPC_TAG="ResourceType=vpc,Tags=[{Key=Name,Value=${EC2_VPC_NAME}}]"
 # ##############################################
 # check vps is exist
 RET=`aws ec2 describe-vpcs --filters Name=tag:Name,Values=${EC2_VPC_NAME}`
-if [ $? -eq 0 ]; then
+if [ "$RET" = ${EC2_VPC_NAME} ]; then
     echo "VPC is already exist."
     exit 1
 fi
